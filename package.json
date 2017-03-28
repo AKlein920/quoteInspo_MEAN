@@ -1,0 +1,26 @@
+{
+  "name": "quoteinspo_mean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aauslander920/quoteInspo_MEAN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aauslander920/quoteInspo_MEAN/issues"
+  },
+  "homepage": "https://github.com/Aauslander920/quoteInspo_MEAN#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "mongoose": "^4.9.2"
+  }
+}
