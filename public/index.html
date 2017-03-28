@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="quoteInspo">
   <head>
     <meta charset="utf-8">
     <title>QuoteInspo</title>
@@ -11,7 +11,7 @@
      <link rel="stylesheet" href="css/style.css"/>
 
   </head>
-  <body ng-app='quoteInspo'>
+  <body ng-controller="MainController as main">
     <header>
       <nav>
         <ul>
@@ -23,7 +23,8 @@
       </nav>
     </header>
 
-    {{2+2}}
+    {{main.name}}
+    {{main.age}}
 
   </body>
 </html>
