@@ -18,7 +18,28 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('Connected to mongoDB');
-});
+
+  //testing schema
+  console.log('testing our schema');
+  //require our models
+  var User = require('./models/user');
+  var Post = require('./models/post');
+
+  var newUser = {username: "Tidus", password: "password"}
+  var newPost = {userId: 1, quote: "blah blah blahhhh"}
+
+  User.create(newUser, function(err, createdUser) {
+    if (err) {console.log('error is: ', err) }
+    console.log(createdUser);
+  });
+
+  Post.create(newPost, function(err, createdPost) {
+    if (err) {console.log('error is: ', err) }
+    console.log(createdPost);
+  });
+  //end test
+
+}); //end db.once
 
 // middleware
 app.use(express.static('public'));
