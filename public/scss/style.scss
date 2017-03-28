@@ -1,0 +1,16 @@
+//variables
+$lilac: #A288A6;
+
+
+nav {
+  background: $lilac;
+  ul {
+    list-style: none;
+    &:hover {
+      font-size: 34px;
+    }
+    li {
+      text-decoration: none;
+    }
+  }
+}
