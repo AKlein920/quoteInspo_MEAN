@@ -1,0 +1,17 @@
+//variables
+$lilac: #A288A6;
+
+//styling a mock nav to show use of variables, nesting, mouse events
+nav {
+  background: $lilac;
+  ul {
+    list-style: none;
+    text-align: center;
+    &:hover {
+      font-size: 34px;
+    }
+    li {
+      text-decoration: none;
+    }
+  }
+}

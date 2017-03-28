@@ -1,3 +1,11 @@
-body {
-  background-color: red;
-}
+nav {
+  background: #A288A6; }
+  nav ul {
+    list-style: none;
+    text-align: center; }
+    nav ul:hover {
+      font-size: 34px; }
+    nav ul li {
+      text-decoration: none; }
+
+
