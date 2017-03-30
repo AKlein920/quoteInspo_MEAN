@@ -1,8 +1,4 @@
-// instantiates angular app
-var app = angular.module("quoteInspo", []);
-
-// establishes controller
-app.controller('MainController', ['$http', function($http) {
-  this.name = 'Abi';
-  this.age = 27;
-}]); // end MainController
+// instantiates angular app & controllers
+angular.module("quoteInspo")
+  .controller('AuthController', AuthController)
+  .controller('PostController', PostController)
