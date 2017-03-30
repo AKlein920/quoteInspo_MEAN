@@ -61,6 +61,7 @@ apiRoutes.post('/signup', function(req, res) {
   }
 });
 
+// authenticate route
 apiRoutes.post('/authenticate', function(req, res) {
   User.findOne({
     username: req.body.username
@@ -85,6 +86,7 @@ apiRoutes.post('/authenticate', function(req, res) {
   });
 });
 
+// sample protected route
 apiRoutes.get('/memberinfo', passport.authenticate('jwt', {session: false}), function(req, res) {
   var token = getToken(req.headers);
   if (token) {
