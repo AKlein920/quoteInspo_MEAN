@@ -61,14 +61,14 @@ apiRoutes.post('/signup', function(req, res) {
   }
 });
 
-// authenticate route
+// login route
 apiRoutes.post('/authenticate', function(req, res) {
   User.findOne({
     username: req.body.username
   }, function(err, foundUser) {
     if (err) {
       console.log(err);
-    } if (!user) {
+    } if (!foundUser) {
       res.json({success: false, msg: 'authentication failed; user not found'});
     } else {
       // check for password match
