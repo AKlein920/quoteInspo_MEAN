@@ -1,9 +1,10 @@
 //declare variables
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var Schema = mongoose.Schema;
 
 //structure for the user when creating - this (password property at least) will change when we have hashed passwords and user auth.
-var userSchema = mongoose.Schema({
+var userSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -18,7 +19,9 @@ var userSchema = mongoose.Schema({
 // use the pre hook to ensure user's password is salted/hashed before save
 userSchema.pre('save', function (next) {
   var user = this;
+
   if (this.isModified('password') || this.isNew) {
+
     bcrypt.genSalt(10, function (err, salt) {
       if (err) {
         return next(err);
