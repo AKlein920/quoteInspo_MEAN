@@ -2,14 +2,31 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    session = require('express-session');
+    morgan = require('morgan'),
+    passport = require('passport'),
+    jwt = require('jwt-simple'),
+    User = require('./models/user'),
+    Post = require('./models/post'),
+    config = require('./config/database'),
+    port = process.env.PORT || 3000,
+    mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost/quoteInspo';
+
 
 // instantiates express
 var app = express();
 
-// port - deployed & local
-var port = process.env.PORT || 3000
-var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost/quoteInspo';
+// middleware
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(morgan('dev'));
+app.use(passport.initialize());
+
+// route for testing
+app.get('/', function(req, res) {
+  res.send('hi!');
+});
+
 
 // database
 mongoose.connect(mongoDBURI);
@@ -38,12 +55,9 @@ db.once('open', function() {
 
 }); //end db.once
 //require our models
-var User = require('./models/user');
-var Post = require('./models/post');
 
-// middleware
-app.use(express.static('public'));
-app.use(bodyParser.json());
+
+
 
 // listener
 app.listen(port, function() {
