@@ -77,8 +77,9 @@ apiRoutes.post('/authenticate', function(req, res) {
           // if user is found & password is correct, create a token!
           var token = jwt.encode(foundUser, config.secret);
           var username = req.body.username;
-          // return token as json
-          res.json({success: true, token: token, username: username});
+          var userId = foundUser._id;
+          // return token, username, and userId as json for saving in brower localStorage
+          res.json({success: true, token: token, username: username, userId: userId});
         } else {
           res.send({success: false, msg: 'authentication failed because password is wrong'});
         }

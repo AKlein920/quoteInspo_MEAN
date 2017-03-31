@@ -11,6 +11,7 @@ function AuthController($http, $state) {
       console.log(response.data);
       localStorage.setItem('token', JSON.stringify(response.data.token));
       localStorage.setItem('username', JSON.stringify(response.data.username));
+      localStorage.setItem('userId', JSON.stringify(response.data.userId));
       $state.go('index');
     });
   };
@@ -27,15 +28,21 @@ function AuthController($http, $state) {
         method: 'POST',
         url: '/api/authenticate',
         data: {username: self.signupData.username, password: self.signupData.password}
-      }).then(function(data) {
-        console.log(data);
+      }).then(function(response) {
+        // console.log(data);
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        localStorage.setItem('username', JSON.stringify(response.data.username));
+        localStorage.setItem('userId', JSON.stringify(response.data.userId));
         $state.go('index');
       });
     });
   };
 
   this.logout = function() {
-
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    $state.go('index');
   }
 
 } ///// end AuthController
