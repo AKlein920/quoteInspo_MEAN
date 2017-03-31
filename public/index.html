@@ -30,8 +30,13 @@
         </ul>
       </nav>
     </header>
-    <h1>QuoteInspo</h1>
-    <ui-view></ui-view>
+    <main ng-controller='PostController as post'>
+      <h1>QuoteInspo</h1>
+      <ui-view></ui-view>
+      <h3 ng-if='post.currentUser'>{{post.currentUser}}</h3>
+
+    </main>
+
 
 
   </body>
