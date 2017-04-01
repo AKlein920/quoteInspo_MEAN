@@ -32,23 +32,29 @@
         </ul>
       </nav>
     </header>
-    <main ng-controller='PostController as post'>
+    <main ng-controller='PostController as postCtrl'>
       <h1>QuoteInspo</h1>
       <ui-view></ui-view>
-      <form ng-submit="post.newPost()">
+      <form ng-submit="postCtrl.newPost()">
         <div>
           <label for="quote">Quote</label>
-          <input type="text" ng-model='post.createPost.quote'>
+          <input type="text" ng-model='postCtrl.createPost.quote'>
         </div>
         <div>
           <label for="img">Image</label>
-          <input type="text" ng-model="post.createPost.img">
+          <input type="text" ng-model="postCtrl.createPost.img">
         </div>
         <button type="submit">Create!</button>
       </form>
       <!-- <h3 ng-if='post.currentUser'>{{post.currentUser}}</h3> -->
         <div>
           <h3>{{post.post.quote}}</h3>
+        </div>
+        <div ng-repeat="post in postCtrl.posts">
+          <div>
+            <h2>{{post.quote}}</h2>
+            <img ng-src="{{post.img}}"/>
+          </div>
         </div>
 
     </main>

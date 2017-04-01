@@ -9,7 +9,7 @@ function PostController($http, $state) {
       url: 'api/posts'
     }).then(function(response) {
       // console.log(response.data);
-      this.posts = response.data;
+      this.posts = response.data.reverse();
       console.log(this.posts);
     }.bind(this));
   };
@@ -27,6 +27,7 @@ function PostController($http, $state) {
       //setting var for angular
       this.post = response.config.data;
       console.log(this.post);
+      location.reload();
     }.bind(this));
   };
 
