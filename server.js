@@ -22,6 +22,10 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(passport.initialize());
 
+//use post controllers
+var postController = require('./controllers/posts.js');
+app.use('/posts', postController);
+
 // database
 mongoose.connect(mongoDBURI);
 var db = mongoose.connection;
