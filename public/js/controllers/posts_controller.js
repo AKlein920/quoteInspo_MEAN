@@ -6,10 +6,10 @@ function PostController($http, $state) {
     $http({
       method: 'POST',
       url: 'api/posts',
-      data: {quote: this.createPost.quote, img: this.createPost.img}
+      data: {userID: localStorage.userId, quote: this.createPost.quote, img: this.createPost.img}
     }).then(function(response) {
-      console.log(response.data);
-    });
+      console.log(response.config.data);
+    }.bind(this));
   };
 
 
