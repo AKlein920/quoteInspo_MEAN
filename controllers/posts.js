@@ -5,9 +5,13 @@ var User = require('../models/user.js');
 var moment = require('moment');
 
 //index
-router.get('/', function(req, res) {
+router.get('/posts', function(req, res) {
   Post.find({}, function(err, foundPosts) {
-    res.redirect('/');
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect('/');
+    }
   });
 });
 
