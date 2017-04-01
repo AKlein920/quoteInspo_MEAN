@@ -1,3 +1,13 @@
 <div ng-controller='AuthController as auth'>
-  {{auth.name}}
+  <form ng-submit="auth.login()">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" ng-model='auth.loginData.username'>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" ng-model="auth.loginData.password">
+    </div>
+    <button type="submit">Login</button>
+  </form>
 </div>

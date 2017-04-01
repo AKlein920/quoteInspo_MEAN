@@ -5,7 +5,7 @@
     <title>QuoteInspo</title>
     <!-- Angular & Angular UI Router -->
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+     <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 
      <!-- Router -->
      <script type="text/javascript" src='/js/router.js'></script>
@@ -22,15 +22,21 @@
     <header>
       <nav>
         <ul>
-          <li>Sign Up</li>
-          <li>Log In</li>
+          <li ui-sref='/signup'>Sign Up</li>
+          <li ui-sref="/login">Log In</li>
+          <li ng-click='auth.logout()'>Log Out</li>
           <li>Create</li>
           <li>My Account</li>
         </ul>
       </nav>
     </header>
+    <main ng-controller='PostController as post'>
+      <h1>QuoteInspo</h1>
+      <ui-view></ui-view>
+      <h3 ng-if='post.currentUser'>{{post.currentUser}}</h3>
 
-    <ui-view></ui-view>
+    </main>
+
 
 
   </body>

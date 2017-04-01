@@ -13,4 +13,8 @@ function QuoteRouter($stateProvider, $urlRouterProvider) {
     url: '/login',
     templateUrl: '/partials/login.html'
   })
+  .state('/signup', {
+    url: '/signup',
+    templateUrl: '/partials/signup.html'
+  })
 }
