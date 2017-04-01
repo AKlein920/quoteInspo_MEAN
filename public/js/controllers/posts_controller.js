@@ -9,6 +9,7 @@ function PostController($http, $state) {
       url: 'api/posts'
     }).then(function(response) {
       // console.log(response.data);
+      //this line makes it so that my array is reversed and most recent post is at the top
       this.posts = response.data.reverse();
       console.log(this.posts);
     }.bind(this));
@@ -20,13 +21,14 @@ function PostController($http, $state) {
     $http({
       method: 'POST',
       url: 'api/posts',
-      data: {userId: JSON.parse(localStorage.userId), quote: this.createPost.quote, img: this.createPost.img},
-      headers: { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token'))}
+      data: {userId: JSON.parse(localStorage.userId), quote: this.createPost.quote, img: this.createPost.img}
     }).then(function(response) {
       // console.log(response.config.data);
       //setting var for angular
       this.post = response.config.data;
       console.log(this.post);
+      //this line refreshes the page so that my post shows up right when i create it.
+      $state.go('index');
       location.reload();
     }.bind(this));
   };
