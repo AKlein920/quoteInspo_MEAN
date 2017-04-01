@@ -8,7 +8,9 @@ function PostController($http, $state) {
       method: 'GET',
       url: 'api/posts'
     }).then(function(response) {
-      console.log(response);
+      // console.log(response.data);
+      this.posts = response.data;
+      console.log(this.posts);
     }.bind(this));
   };
   this.allPosts();
