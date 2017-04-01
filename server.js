@@ -22,9 +22,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(passport.initialize());
 
-//use post controllers
-var postController = require('./controllers/posts.js');
-app.use('/posts', postController);
 
 // database
 mongoose.connect(mongoDBURI);
@@ -40,6 +37,10 @@ require('./config/passport')(passport);
 
 // use express router
 var apiRoutes = express.Router();
+
+//use post controller
+var postController = require('./controllers/posts');
+apiRoutes.use('/posts', postController);
 
 apiRoutes.get('/signup', function(req, res) {
   res.send('hi');
