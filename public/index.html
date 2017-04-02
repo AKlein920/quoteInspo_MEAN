@@ -35,18 +35,6 @@
     <main ng-controller='PostController as postCtrl'>
       <h1>QuoteInspo</h1>
       <ui-view></ui-view>
-      <!-- <form ng-if="postCtrl.currentUser" ng-submit="postCtrl.newPost()">
-        <div>
-          <label for="quote">Quote</label>
-          <input type="text" ng-model='postCtrl.createPost.quote'>
-        </div>
-        <div>
-          <label for="img">Image</label>
-          <input type="text" ng-model="postCtrl.createPost.img">
-        </div>
-        <button type="submit">Create!</button>
-      </form> -->
-      <!-- <h3 ng-if='post.currentUser'>{{post.currentUser}}</h3> -->
         <div>
           <h3>{{post.post.quote}}</h3>
         </div>
@@ -54,6 +42,7 @@
           <div>
             <h2>{{post.quote}}</h2>
             <img ng-src="{{post.img}}"/>
+            <small>{{post.date | date: 'medium'}}</small>
           </div>
         </div>
 

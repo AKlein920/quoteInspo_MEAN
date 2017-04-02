@@ -21,7 +21,7 @@ function PostController($http, $state) {
     $http({
       method: 'POST',
       url: 'api/posts',
-      data: {userId: JSON.parse(localStorage.userId), quote: this.createPost.quote, img: this.createPost.img}
+      data: {userId: JSON.parse(localStorage.userId), quote: this.createPost.quote, img: this.createPost.img, date: new Date()}
     }).then(function(response) {
       // console.log(response.config.data);
       //setting var for angular
