@@ -1,6 +1,7 @@
 function AuthController($http, $state) {
   this.loginData = {};
   this.signupData = {};
+  this.currentUser = localStorage.username;
 
   this.login = function() {
     $http({
@@ -13,6 +14,7 @@ function AuthController($http, $state) {
       localStorage.setItem('username', JSON.stringify(response.data.username));
       localStorage.setItem('userId', JSON.stringify(response.data.userId));
       $state.go('index');
+      location.reload();
     });
   };
 
@@ -42,6 +44,7 @@ function AuthController($http, $state) {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
+    location.reload();
     $state.go('index');
   }
 

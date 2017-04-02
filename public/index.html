@@ -27,8 +27,8 @@
           <li ui-sref='/signup'>Sign Up</li>
           <li ui-sref="/login">Log In</li>
           <li ng-click='auth.logout()'>Log Out</li>
-          <li ui-sref='/post'>Create</li>
-          <li>My Account</li>
+          <li ng-if="auth.currentUser" ui-sref='/post'>Create</li>
+          <li ng-if="auth.currentUser">My Account</li>
         </ul>
       </nav>
     </header>
