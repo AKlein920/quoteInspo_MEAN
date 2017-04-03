@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(passport.initialize());
 
+
 // database
 mongoose.connect(mongoDBURI);
 var db = mongoose.connection;
@@ -36,6 +37,10 @@ require('./config/passport')(passport);
 
 // use express router
 var apiRoutes = express.Router();
+
+//use post controller
+var postController = require('./controllers/posts');
+apiRoutes.use('/posts', postController);
 
 apiRoutes.get('/signup', function(req, res) {
   res.send('hi');
@@ -89,25 +94,25 @@ apiRoutes.post('/authenticate', function(req, res) {
 });
 
 // sample protected route
-apiRoutes.get('/memberinfo', passport.authenticate('jwt', {session: false}), function(req, res) {
-  var token = getToken(req.headers);
-  if (token) {
-    var decoded = jwt.decode(token, config.secret);
-    User.findOne({
-      username: decoded.username
-    }, function(err, foundUser) {
-      if (err) {
-        console.log(err);
-      } if (!foundUser) {
-        return res.status(403).json({success: false, msg: 'authentication failed, user not found'});
-      } else {
-        res.json({success: true, msg: 'welcome to the party, ' + foundUser.username});
-      }
-    });
-  } else {
-    return res.status(403).json({success: false, msg: 'no token provided'});
-  }
-});
+// apiRoutes.get('/memberinfo', passport.authenticate('jwt', {session: false}), function(req, res) {
+//   var token = getToken(req.headers);
+//   if (token) {
+//     var decoded = jwt.decode(token, config.secret);
+//     User.findOne({
+//       username: decoded.username
+//     }, function(err, foundUser) {
+//       if (err) {
+//         console.log(err);
+//       } if (!foundUser) {
+//         return res.status(403).json({success: false, msg: 'authentication failed, user not found'});
+//       } else {
+//         res.json({success: true, msg: 'welcome to the party, ' + foundUser.username});
+//       }
+//     });
+//   } else {
+//     return res.status(403).json({success: false, msg: 'no token provided'});
+//   }
+// });
 
 getToken = function(headers) {
   if (headers && headers.authorization) {
