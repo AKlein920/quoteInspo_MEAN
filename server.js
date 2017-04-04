@@ -93,39 +93,18 @@ apiRoutes.post('/authenticate', function(req, res) {
   });
 });
 
-// sample protected route
-// apiRoutes.get('/memberinfo', passport.authenticate('jwt', {session: false}), function(req, res) {
-//   var token = getToken(req.headers);
-//   if (token) {
-//     var decoded = jwt.decode(token, config.secret);
-//     User.findOne({
-//       username: decoded.username
-//     }, function(err, foundUser) {
-//       if (err) {
-//         console.log(err);
-//       } if (!foundUser) {
-//         return res.status(403).json({success: false, msg: 'authentication failed, user not found'});
-//       } else {
-//         res.json({success: true, msg: 'welcome to the party, ' + foundUser.username});
-//       }
-//     });
+// getToken = function(headers) {
+//   if (headers && headers.authorization) {
+//     var parted = headers.authorization.split(' ');
+//     if (parted.length === 2) {
+//       return parted[1];
+//     } else {
+//       return null;
+//     }
 //   } else {
-//     return res.status(403).json({success: false, msg: 'no token provided'});
+//     return null;
 //   }
-// });
-
-getToken = function(headers) {
-  if (headers && headers.authorization) {
-    var parted = headers.authorization.split(' ');
-    if (parted.length === 2) {
-      return parted[1];
-    } else {
-      return null;
-    }
-  } else {
-    return null;
-  }
-};
+// };
 
 // make sure api routes use the right stuff
 app.use('/api', apiRoutes);
