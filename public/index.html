@@ -38,9 +38,6 @@
     <main ng-controller='PostController as postCtrl'>
       <h1>QuoteInspo</h1>
       <h2>{{main.currentUser.username}}</h2>
-        <div>
-          <h3>{{post.post.quote}}</h3>
-        </div>
         <div ng-repeat="post in postCtrl.posts">
           <div>
             <h2>{{post.quote}}</h2>
