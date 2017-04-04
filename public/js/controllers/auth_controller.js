@@ -1,7 +1,7 @@
-function AuthController($http, $state) {
+function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
+  var self = this;
   this.loginData = {};
   this.signupData = {};
-  this.currentUser = localStorage.username;
 
   this.login = function() {
     $http({
@@ -10,16 +10,11 @@ function AuthController($http, $state) {
       data: {username: this.loginData.username, password: this.loginData.password}
     }).then(function(response) {
       console.log(response.data);
-      localStorage.setItem('token', JSON.stringify(response.data.token));
-      localStorage.setItem('username', JSON.stringify(response.data.username));
-      localStorage.setItem('userId', JSON.stringify(response.data.userId));
       $state.go('index');
-      location.reload();
     });
   };
 
   this.signup = function() {
-    var self = this;
     $http({
       method: 'POST',
       url: '/api/signup',
@@ -31,20 +26,21 @@ function AuthController($http, $state) {
         url: '/api/authenticate',
         data: {username: self.signupData.username, password: self.signupData.password}
       }).then(function(response) {
-        // console.log(data);
-        localStorage.setItem('token', JSON.stringify(response.data.token));
-        localStorage.setItem('username', JSON.stringify(response.data.username));
-        localStorage.setItem('userId', JSON.stringify(response.data.userId));
+        console.log(response.data);
+        //deleted all of the localStorage functionality we had going on. using AuthTokenFactory to set the token and grab our data.
+        AuthTokenFactory.setToken(response.data.token)
+        //calls $on('userLoggedIn') from MainController
+        $scope.$emit('userLoggedIn', response.data);
+        $rootScope.$emit('fetchData', response.data);
         $state.go('index');
       });
     });
   };
 
   this.logout = function() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('username');
-    location.reload();
+    AuthTokenFactory.setToken();
+    //calls on userLoggedOut from MainController
+    $scope.$emit('userLoggedOut');
     $state.go('index');
   }
 

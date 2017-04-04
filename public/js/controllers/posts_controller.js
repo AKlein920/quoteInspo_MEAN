@@ -1,5 +1,5 @@
 function PostController($http, $state) {
-  this.currentUser = localStorage.username;
+  var self = this;
   this.createPost = {};
 
 //index of posts, show me all the posts
@@ -29,7 +29,6 @@ function PostController($http, $state) {
       console.log(this.post);
       //this line refreshes the page so that my post shows up right when i create it.
       $state.go('index');
-      location.reload();
     }.bind(this));
   };
 
