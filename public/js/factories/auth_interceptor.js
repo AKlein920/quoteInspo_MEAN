@@ -10,7 +10,7 @@ function AuthInterceptor(AuthTokenFactory) {
       //puts bearer token into auth.
       config.headers = config.headers || {}
       config.headers.Authorization = `Bearer ${token}`;
-      console.log('this is if token in auth_interceptor and it\'s working');
+      // console.log('this is if token in auth_interceptor and it\'s working');
     }
     return config
   }

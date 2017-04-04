@@ -6,11 +6,11 @@
     <!-- Angular & Angular UI Router -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+     <!-- Router -->
+     <script type="text/javascript" src='./js/router.js'></script>
      <!-- Factories -->
      <script src="./js/factories/auth_interceptor.js"></script>
      <script src="./js/factories/auth_token_factory.js"></script>
-     <!-- Router -->
-     <script type="text/javascript" src='./js/router.js'></script>
      <!-- Controllers -->
      <script src="./js/controllers/main_controller.js"></script>
      <script src="./js/controllers/auth_controller.js"></script>
@@ -21,22 +21,23 @@
      <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body ng-controller="MainController as main">
-    <header>
-        <div ng-controller="AuthController as auth">
-          <nav>
-            <ul>
-              <li ui-sref='/signup'>Sign Up</li>
-              <li ui-sref="/login">Log In</li>
-              <li ng-click='auth.logout()'>Log Out</li>
-              <li ng-if="main.currentUser" ui-sref='/post'>Create</li>
-              <li ng-if="main.currentUser">My Account</li>
-          </ul>
-        </nav>
-      </header>
-        <ui-view></ui-view>
-      </div>
+    <div ng-controller="AuthController as auth">
+      <header>
+        <nav>
+          <ul>
+            <li ui-sref='/signup'>Sign Up</li>
+            <li ui-sref="/login">Log In</li>
+            <li ng-click='auth.logout()'>Log Out</li>
+            <li ng-if="main.currentUser" ui-sref='/post'>Create</li>
+            <li ng-if="main.currentUser">My Account</li>
+        </ul>
+      </nav>
+    </header>
+      <ui-view></ui-view>
+    </div>
     <main ng-controller='PostController as postCtrl'>
       <h1>QuoteInspo</h1>
+      <h2>{{main.currentUser.username}}</h2>
         <div>
           <h3>{{post.post.quote}}</h3>
         </div>
