@@ -1,9 +1,17 @@
-function PostController($http, $state) {
+function PostController($scope, $http, $state, $stateParams, $rootScope) {
   var self = this;
-  this.createPost = {};
+  this.createPost = [];
+  this.posts = [];
+  self.currentUser = [];
+
+  $rootScope.$on('fetchData', function(event, data) {
+    self.currentUser.push(data);
+    console.log(self.currentUser);
+  });
 
 //index of posts, show me all the posts
-  this.allPosts = function() {
+  function allPosts() {
+    console.log(self.currentUser);
     $http({
       method: 'GET',
       url: 'api/posts'
@@ -14,19 +22,20 @@ function PostController($http, $state) {
       console.log(this.posts);
     }.bind(this));
   };
-  this.allPosts();
+  allPosts();
 
 //create me a post
   this.newPost = function() {
+    console.log(self.currentUser);
     $http({
       method: 'POST',
       url: 'api/posts',
-      data: {userId: JSON.parse(localStorage.userId), quote: this.createPost.quote, img: this.createPost.img, date: new Date()}
+      data: {userId: self.currentUser.userId, quote: this.createPost.quote, img: this.createPost.img, date: new Date()}
     }).then(function(response) {
       // console.log(response.config.data);
       //setting var for angular
-      this.post = response.config.data;
-      console.log(this.post);
+      this.createdPost = response.config.data;
+      console.log(this.createdPost);
       //this line refreshes the page so that my post shows up right when i create it.
       $state.go('index');
     }.bind(this));

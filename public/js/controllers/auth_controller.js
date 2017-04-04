@@ -10,6 +10,11 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
       data: {username: this.loginData.username, password: this.loginData.password}
     }).then(function(response) {
       console.log(response.data);
+      AuthTokenFactory.setToken(response.data.token)
+      // localStorage.setItem('userId', JSON.stringify(response.data.userId));
+      //calls $on('userLoggedIn') from MainController
+      $scope.$emit('userLoggedIn', response.data);
+      $rootScope.$emit('fetchData', response.data);
       $state.go('index');
     });
   };
@@ -30,6 +35,7 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
         //deleted all of the localStorage functionality we had going on. using AuthTokenFactory to set the token and grab our data.
         AuthTokenFactory.setToken(response.data.token)
         //calls $on('userLoggedIn') from MainController
+        // localStorage.setItem('userId', JSON.stringify(response.data.userId));
         $scope.$emit('userLoggedIn', response.data);
         $rootScope.$emit('fetchData', response.data);
         $state.go('index');
