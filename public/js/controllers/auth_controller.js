@@ -10,11 +10,17 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
       data: {username: this.loginData.username, password: this.loginData.password}
     }).then(function(response) {
       console.log(response.data);
-      AuthTokenFactory.setToken(response.data.token)
+      AuthTokenFactory.setToken(response.data.token);
       // localStorage.setItem('userId', JSON.stringify(response.data.userId));
       //calls $on('userLoggedIn') from MainController
-      $scope.$emit('userLoggedIn', response.data);
-      $rootScope.$emit('fetchData', response.data);
+      $scope.$emit('userLoggedIn', {
+        username: response.data.username,
+        userId: response.data.userId
+      });
+      $rootScope.$emit('fetchData', { currentUser: {
+        username: response.data.username,
+        userId: response.data.userId
+      }});
       $state.go('index');
     });
   };

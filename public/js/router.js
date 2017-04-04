@@ -1,7 +1,6 @@
 angular.module('quoteInspo', ['ui.router'], function config($httpProvider) {
   //added this line to get our token from auth_interceptor
   $httpProvider.interceptors.push('AuthInterceptor');
-  console.log('this is where that interceptor thing is');
 }).config(QuoteRouter);
 
 function QuoteRouter($stateProvider, $urlRouterProvider) {

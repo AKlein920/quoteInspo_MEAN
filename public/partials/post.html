@@ -1,5 +1,5 @@
 <div ng-controller="PostController as postCtrl">
-  <form ng-submit="postCtrl.newPost()">
+  <form ng-submit="postCtrl.newPost(main.currentUser)">
     <div>
       <label for="quote">Quote</label>
       <input type="text" ng-model='postCtrl.createPost.quote'>

@@ -1,36 +1,40 @@
 function PostController($scope, $http, $state, $stateParams, $rootScope) {
   var self = this;
-  this.createPost = [];
+  this.createPost = {};
   this.posts = [];
-  self.currentUser = [];
 
-  $rootScope.$on('fetchData', function(event, data) {
-    self.currentUser.push(data);
-    console.log(self.currentUser);
-  });
+  // $rootScope.$on('fetchData', function(event, data) {
+  //   self.currentUser = data.currentUser;
+  //   console.log(self.currentUser);
+  // });
+
+
+
 
 //index of posts, show me all the posts
-  function allPosts() {
-    console.log(self.currentUser);
-    $http({
-      method: 'GET',
-      url: 'api/posts'
-    }).then(function(response) {
-      // console.log(response.data);
-      //this line makes it so that my array is reversed and most recent post is at the top
-      this.posts = response.data.reverse();
-      console.log(this.posts);
-    }.bind(this));
-  };
-  allPosts();
+  // function allPosts() {
+  //   console.log(self.currentUser);
+  //   $http({
+  //     method: 'GET',
+  //     url: 'api/posts'
+  //   }).then(function(response) {
+  //     // console.log(response.data);
+  //     //this line makes it so that my array is reversed and most recent post is at the top
+  //     this.posts = response.data.reverse();
+  //     console.log(this.posts);
+  //   });
+  // };
+  // allPosts();
 
 //create me a post
-  this.newPost = function() {
-    console.log(self.currentUser);
+  function newPost(currentUser) {
+    console.log(currentUser);
+    // console.log(self.currentUser);
+    // console.log(self.currentUser);
     $http({
       method: 'POST',
       url: 'api/posts',
-      data: {userId: self.currentUser.userId, quote: this.createPost.quote, img: this.createPost.img, date: new Date()}
+      data: {userId: currentUser.userId, quote: this.createPost.quote, img: this.createPost.img, date: new Date()}
     }).then(function(response) {
       // console.log(response.config.data);
       //setting var for angular
@@ -41,7 +45,6 @@ function PostController($scope, $http, $state, $stateParams, $rootScope) {
     }.bind(this));
   };
 
-
-
+this.newPost = newPost;
 
 }
