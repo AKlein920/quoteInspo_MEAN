@@ -42,9 +42,8 @@ var apiRoutes = express.Router();
 var postController = require('./controllers/posts');
 apiRoutes.use('/posts', postController);
 
-apiRoutes.get('/signup', function(req, res) {
-  res.send('hi');
-})
+// make sure api routes use the right stuff
+app.use('/api', apiRoutes);
 
 // create a new user account at http://localhost:3000/api/signup
 apiRoutes.post('/signup', function(req, res) {
@@ -92,22 +91,6 @@ apiRoutes.post('/authenticate', function(req, res) {
     }
   });
 });
-
-// getToken = function(headers) {
-//   if (headers && headers.authorization) {
-//     var parted = headers.authorization.split(' ');
-//     if (parted.length === 2) {
-//       return parted[1];
-//     } else {
-//       return null;
-//     }
-//   } else {
-//     return null;
-//   }
-// };
-
-// make sure api routes use the right stuff
-app.use('/api', apiRoutes);
 
 // listener
 app.listen(port, function() {

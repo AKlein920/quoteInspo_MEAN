@@ -33,14 +33,16 @@
         </ul>
       </nav>
     </header>
-      <ui-view></ui-view>
     </div>
+
+    <ui-view></ui-view>
+
     <main ng-controller='PostController as postCtrl'>
       <h1>QuoteInspo</h1>
       <h2>{{main.currentUser.username}}</h2>
-        <div ng-repeat="post in postCtrl.posts">
+        <div ng-repeat="post in main.posts">
           <div>
-            <h2>{{post.quote}}</h2>
+            <h2><a ui-sref='/posts/{{post._id}}' ng-click='postCtrl.onePost(post._id)'>{{post.quote}}</a></h2>
             <img ng-src="{{post.img}}"/>
             <small>{{post.date | date: 'medium'}}</small>
           </div>
