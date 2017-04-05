@@ -1,15 +1,7 @@
 function PostController($scope, $http, $state, $stateParams, $rootScope) {
   var self = this;
   this.createPost = {};
-  this.posts = [];
   var parent = $scope.$parent.$parent.main;
-
-
-
-  // $rootScope.$on('fetchData', function(event, data) {
-  //   self.currentUser = data.currentUser;
-  //   console.log(self.currentUser);
-  // });
 
 //create me a post
   function newPost(currentUser) {
@@ -24,10 +16,20 @@ function PostController($scope, $http, $state, $stateParams, $rootScope) {
       this.createdPost = response.config.data;
       parent.posts.push(this.createdPost);
       console.log(parent.posts.reverse());
-      //this line refreshes the page so that my post shows up right when i create it.
       $state.go('index');
     });
   };
+
+//show me a specific post
+function onePost(postid) {
+  $http({
+    method: 'GET',
+    url: 'api/posts/:post_id'
+  }).then(function(response) {
+    console.log(response.data);
+    $state.go('onePost', {post_id: postid});
+  })
+}
 
 this.newPost = newPost;
 
