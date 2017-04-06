@@ -28,6 +28,7 @@ function onePost(post_id) {
     url: '/posts/' + post_id
   }).then(function(response) {
     console.log(response.data);
+    $state.go('/onePost', {post_id: post_id})
   })
 }
 
