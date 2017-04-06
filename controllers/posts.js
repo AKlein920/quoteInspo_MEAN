@@ -15,7 +15,6 @@ router.get('/', function(req, res) {
   });
 });
 
-
 //create
 router.post('/', function(req, res) {
   Post.create(req.body, function(err, createdPost) {
@@ -23,7 +22,12 @@ router.post('/', function(req, res) {
   });
 });
 
-
+//show
+router.get('/:id', function(req, res) {
+  Post.findById(req.params.id, function(err, foundPost) {
+    res.redirect('/posts/'+req.params.id);
+  });
+});
 
 
 

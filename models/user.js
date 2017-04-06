@@ -1,6 +1,7 @@
 //declare variables
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var Post = require('./post.js');
 var Schema = mongoose.Schema;
 
 //structure for the user when creating - this (password property at least) will change when we have hashed passwords and user auth.
@@ -13,7 +14,8 @@ var userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  posts: [Post.schema]
 });
 
 // use the pre hook to ensure user's password is salted/hashed before save

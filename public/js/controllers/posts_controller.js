@@ -24,7 +24,7 @@ function PostController($scope, $http, $state, $stateParams, $rootScope) {
 function onePost(postid) {
   $http({
     method: 'GET',
-    url: 'api/posts/:post_id'
+    url: '/posts/:post_id'
   }).then(function(response) {
     console.log(response.data);
     $state.go('onePost', {post_id: postid});
