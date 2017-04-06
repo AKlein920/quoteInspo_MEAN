@@ -5,7 +5,7 @@ function MainController($scope, $http) {
   // on page load, grabs all posts from db to display even if user is not logged in
     $http({
       method: 'GET',
-      url: 'api/posts'
+      url: '/posts'
     }).then(function(response) {
       //this line makes it so that my array is reversed and most recent post is at the top
       self.posts = response.data.reverse();

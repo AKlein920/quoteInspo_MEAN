@@ -8,7 +8,7 @@ function PostController($scope, $http, $state, $stateParams, $rootScope) {
     // console.log($scope.$parent.$parent.main.posts);
     $http({
       method: 'POST',
-      url: 'api/posts',
+      url: '/posts',
       data: {userId: currentUser.userId, quote: this.createPost.quote, img: this.createPost.img, date: new Date()}
     }).then(function(response) {
       // console.log(response.config.data);
@@ -21,16 +21,17 @@ function PostController($scope, $http, $state, $stateParams, $rootScope) {
   };
 
 //show me a specific post
-function onePost(postid) {
+function onePost(post_id) {
+  console.log('hi');
   $http({
     method: 'GET',
-    url: '/posts/:post_id'
+    url: '/posts/' + post_id
   }).then(function(response) {
     console.log(response.data);
-    $state.go('onePost', {post_id: postid});
   })
 }
 
 this.newPost = newPost;
+this.onePost = onePost;
 
 }

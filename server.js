@@ -40,7 +40,7 @@ var apiRoutes = express.Router();
 
 //use post controller
 var postController = require('./controllers/posts');
-apiRoutes.use('/posts', postController);
+app.use('/posts', postController);
 
 // make sure api routes use the right stuff
 app.use('/api', apiRoutes);
