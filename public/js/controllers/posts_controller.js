@@ -1,5 +1,6 @@
 function PostController($scope, $http, $state, $stateParams, $rootScope) {
   var self = this;
+  this.foundPost = {};
   this.createPost = {};
   var parent = $scope.$parent.$parent.main;
 
@@ -27,8 +28,9 @@ function onePost(post_id) {
     method: 'GET',
     url: '/posts/' + post_id
   }).then(function(response) {
-    console.log(response.data);
-    $state.go('/onePost', {post_id: post_id})
+    self.foundPost = response.data;
+    console.log(self.foundPost);
+    $state.go('onePost', {foundPost: self.foundPost});
   })
 }
 

@@ -4,7 +4,7 @@ angular.module('quoteInspo', ['ui.router'], function config($httpProvider) {
 }).config(QuoteRouter);
 
 function QuoteRouter($stateProvider, $urlRouterProvider) {
-  // $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
   .state('index', {
@@ -22,8 +22,8 @@ function QuoteRouter($stateProvider, $urlRouterProvider) {
     url: '/post',
     templateUrl: '/partials/post.html'
   })
-  .state('/onePost', {
-    url: '/post/:post_id',
+  .state('onePost', {
+    url: '/',
     templateUrl: '/partials/onePost.html'
   })
 }
