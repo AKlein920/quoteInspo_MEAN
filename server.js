@@ -92,6 +92,14 @@ apiRoutes.post('/authenticate', function(req, res) {
   });
 });
 
+apiRoutes.delete('/users/:id', function(req, res) {
+  console.log(req.params.id);
+  User.findByIdAndRemove(req.params.id, function(err, foundUser) {
+    console.log(foundUser);
+    // foundUser.remove();
+  })
+})
+
 // listener
 app.listen(port, function() {
   console.log('quoteInspo app is listening on port: ' + port);

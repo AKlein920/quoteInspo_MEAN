@@ -2,6 +2,7 @@ function MainController($scope, $http) {
   var self = this;
   var server = 'http://localhost:3000';
   this.posts = [];
+  this.onePost = [];
   // on page load, grabs all posts from db to display even if user is not logged in
     $http({
       method: 'GET',

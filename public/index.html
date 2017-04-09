@@ -29,7 +29,7 @@
             <li ui-sref="/login">Log In</li>
             <li ng-click='auth.logout()'>Log Out</li>
             <li ng-if="main.currentUser" ui-sref='/post'>Create</li>
-            <li ng-if="main.currentUser">My Account</li>
+            <li ui-sref='myAccount' ng-if="main.currentUser">My Account</li>
         </ul>
       </nav>
     </header>
@@ -42,7 +42,7 @@
       <h2>{{main.currentUser.username}}</h2>
         <div ng-repeat="post in main.posts">
           <div>
-            <h2 ng-click='postCtrl.onePost(post._id)'><a ui-sref='/onePost' >{{post.quote}}</a></h2>
+            <a ui-sref="onePost"><h2 ng-click="postCtrl.onePost(post._id)">{{post.quote}}</h2></a>
             <img ng-src="{{post.img}}"/>
             <small>{{post.date | date: 'medium'}}</small>
           </div>

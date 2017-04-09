@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
 //show
 router.get('/:id', function(req, res) {
   Post.findById(req.params.id, function(err, foundPost) {
-    res.redirect('/posts/'+req.params.id);
+    res.json(foundPost);
   });
 });
 

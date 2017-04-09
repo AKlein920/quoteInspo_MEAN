@@ -56,4 +56,13 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
     $state.go('index');
   }
 
+  this.deleteUser = function(currentUserId) {
+    $http({
+      method: 'DELETE',
+      url: '/api/users/' + currentUserId,
+    }).then(function(response) {
+      console.log(response);
+    })
+  }
+
 } ///// end AuthController
