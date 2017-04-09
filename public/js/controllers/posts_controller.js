@@ -1,8 +1,7 @@
 function PostController($scope, $http, $state, $stateParams, $rootScope) {
   var self = this;
-  this.foundPost = {};
   this.createPost = {};
-  var parent = $scope.$parent.$parent.main;
+  parent = $scope.$parent.$parent.main;
 
 //create me a post
   function newPost(currentUser) {
@@ -24,17 +23,20 @@ function PostController($scope, $http, $state, $stateParams, $rootScope) {
 //show me a specific post
 function onePost(post_id) {
   console.log('hi');
+  parent.onePost = [];
   $http({
     method: 'GET',
     url: '/posts/' + post_id
   }).then(function(response) {
-    self.foundPost = response.data;
-    console.log(self.foundPost);
-    $state.go('onePost', {foundPost: self.foundPost});
-  })
+    parent.onePost.push(response.data);
+    console.log(parent.onePost);
+    $state.go('onePost', {foundPost: parent.onePost});
+  });
+  console.log(parent.onePost);
 }
 
 this.newPost = newPost;
 this.onePost = onePost;
+// this.foundPost;
 
 }
