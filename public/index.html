@@ -29,7 +29,7 @@
             <li ui-sref="/login">Log In</li>
             <li ng-click='auth.logout()'>Log Out</li>
             <li ng-if="main.currentUser" ui-sref='/post'>Create</li>
-            <li ng-if="main.currentUser">My Account</li>
+            <li ui-sref='myAccount' ng-if="main.currentUser">My Account</li>
         </ul>
       </nav>
     </header>

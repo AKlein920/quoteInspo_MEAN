@@ -26,4 +26,8 @@ function QuoteRouter($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: '/partials/onePost.html'
   })
+  .state('myAccount', {
+    url: '/myAccount',
+    templateUrl: '/partials/myAccount.html'
+  })
 }
